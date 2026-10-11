@@ -3,8 +3,6 @@ In previous modules, I have worked with datasets. This time I wanted a larger da
 
 Link to the dataset: https://www.fueleconomy.gov/feg/epadata/vehicles.csv
 
-Github link to code: https://github.com/abhidurham/2025VisualAnalyticsAssignment/blob/bdbbbc652256df14395baf235d7ead5547fbe7d5FinalProject/Python
-
 ### Initial Data Cleaning and Preprocessing
 
 I loaded the pandas, numpy, matplotlib, and seaborn libraries and imported the raw vehicle dataset from the EPA, using the `pd.read_csv` function to consolidate messy sub-categories into three clean buckets: SUV, Car, and Truck. To keep the load robust against mixed-type columns, I passed `low_memory=False`. I then filtered out missing values from critical variables like year, displacement, and combined MPG, while also categorizing transmissions into Automatic and Manual groups. Rather than looping through each row, I used NumPy's vectorized `np.select` along with pandas string `.str.contains()` to categorize the vehicle class and drivetrain in a single, efficient pass. To support the visual analysis, I calculated mean MPG and engine displacement by year and vehicle class to establish historical trends and I specifically reordered the vehicle class levels based on average efficiency. This reordering ensures that legends and plot elements appear in a logical order (from most efficient to least efficient) rather than just alphabetically, which reduces cognitive load and makes the comparison of different vehicle types more intuitive for the reader.
